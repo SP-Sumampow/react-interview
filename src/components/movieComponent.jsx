@@ -7,7 +7,7 @@ export const MovieComponent = ({
   onDeleteClicked,
 }) => (
   <div>
-    <h1>{movie.title}</h1>
+    <h1 className="movie_title">{movie.title}</h1>
     <span>{movie.category}</span>
     <img src={movie.picture} width="100px" height="auto" />
     <button
