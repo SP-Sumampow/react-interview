@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { MovieComponent } from "./MovieComponent";
+import { MovieComponent } from "./components/movieComponent";
+import { SelectMovieComponent } from "./components/selectMovieComponent";
 import { movies$ } from "./movies";
 
 class App extends Component {
@@ -7,6 +8,12 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
+      movieCategories: () => {
+        let categories = this.state.movies.map((movie) => movie.category)
+        categories = categories.filter((x, i, a) => a.indexOf(x) == i)
+        return categories
+
+      }
     };
   }
 
@@ -17,10 +24,10 @@ class App extends Component {
   }
 
   onDeleteClicked(movieId) {
-    let movies = this.state.movies
+    let movies = this.state.movies;
     let movieIndex = movies.findIndex((movie) => {
-      return movie.id == movieId
-    })
+      return movie.id == movieId;
+    });
     if (movieIndex > -1) {
       movies.splice(movieIndex, 1);
     }
@@ -28,21 +35,20 @@ class App extends Component {
   }
 
   onLikeClicked(movieId) {
-    let movies = this.state.movies
+    let movies = this.state.movies;
     const movie = movies.find((movie) => {
       return movie.id == movieId;
     });
-    movie.likes = movie.likes + 1
+    movie.likes = movie.likes + 1;
     this.setState({ movies: movies });
-
   }
 
   onDislikeClicked(movieId) {
-    let movies = this.state.movies
+    let movies = this.state.movies;
     const movie = movies.find((movie) => {
       return movie.id == movieId;
     });
-    movie.dislikes = movie.dislikes + 1    
+    movie.dislikes = movie.dislikes + 1;
     this.setState({ movies: movies });
   }
 
@@ -61,7 +67,15 @@ class App extends Component {
   }
 
   render() {
-    return <div>{this.generateMoviesComponent()}</div>;
+    return (
+      <div>
+        <section>
+          <label for="pet-select">Choose a pet:</label>
+          <SelectMovieComponent  movieCategories={this.state.movieCategories()} />
+        </section>
+        <section>{this.generateMoviesComponent()}</section>
+      </div>
+    );
   }
 }
 
