@@ -13,11 +13,11 @@ class App extends Component {
       categoryFilter: "all",
       limit: 3,
       page: 1,
-      isLast: false
+      isLast: false,
     };
   }
 
-  // statefull cycle 
+  // statefull cycle
   componentDidMount() {
     movies$.then((movies) => {
       this.setState({ movies: movies });
@@ -98,10 +98,11 @@ class App extends Component {
     let pageMax = this.state.movies.length / this.state.limit;
     let page = this.state.page;
     if (page + 1 > pageMax) {
+      this.setState({ isLast: true });
       return;
     }
     page = page + 1;
-    this.setState({ page: page });
+    this.setState({ page: page, isLast: false });
   }
 
   onPreviousClicked(e) {
@@ -110,7 +111,7 @@ class App extends Component {
       return;
     }
     page = page - 1;
-    this.setState({ page: page });
+    this.setState({ page: page, isLast: false });
   }
 
   onPaginationLimitSelected(e) {

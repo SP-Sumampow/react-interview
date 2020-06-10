@@ -4,15 +4,23 @@ export const PaginationComponent = ({
   onNextClicked,
   onPaginationLimitSelected,
   onPreviousClicked,
+  isLast,
 }) => {
+  let nextButton;
+  if (isLast == false) {
+    nextButton = (
+      <button type="button" onClick={onNextClicked}>
+        Next
+      </button>
+    );
+  }
   return (
     <section>
       <button type="button" onClick={onPreviousClicked}>
         Previous
       </button>
-
       <select name="pagination-limit" onChange={onPaginationLimitSelected}>
-        <option key={3} value={3} >
+        <option key={3} value={3}>
           3
         </option>
         <option key={8} value={8}>
@@ -22,9 +30,7 @@ export const PaginationComponent = ({
           12
         </option>
       </select>
-      <button type="button" onClick={onNextClicked}>
-        Next
-      </button>
+      {nextButton}
     </section>
   );
 };
