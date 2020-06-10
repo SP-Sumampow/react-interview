@@ -31,7 +31,7 @@ class App extends Component {
     return categories;
   }
 
-  movieFilterByCategory() {
+  moviesInCategory() {
     let categoryFilter = this.state.categoryFilter;
     let movies = this.state.movies;
 
@@ -40,11 +40,6 @@ class App extends Component {
     }
 
     return movies.filter((movie) => {
-      console.log(
-        `${movie.category == categoryFilter} = ${
-          movie.category
-        } ? ${categoryFilter}`
-      );
       return movie.category == categoryFilter;
     });
   }
@@ -87,22 +82,31 @@ class App extends Component {
   // Category filter component action
 
   onCategorySelected(e) {
-    this.setState({
-      categoryFilter: e.target.value,
-    });
+    this.setState(
+      {
+        categoryFilter: e.target.value,
+        page: 1,
+      },
+      () => {
+        let pageMax =
+          this.moviesInCategory(this.state.movies).length / this.state.limit;
+        this.setState({ isLast: 1 > pageMax });
+      }
+    );
   }
 
   // Pagination action
 
   onNextClicked(e) {
-    let pageMax = this.state.movies.length / this.state.limit;
+    let pageMax =
+      this.moviesInCategory(this.state.movies).length / this.state.limit;
     let page = this.state.page;
+    page = page + 1;
+    this.setState({ page: page });
     if (page + 1 > pageMax) {
       this.setState({ isLast: true });
       return;
     }
-    page = page + 1;
-    this.setState({ page: page, isLast: false });
   }
 
   onPreviousClicked(e) {
@@ -115,14 +119,21 @@ class App extends Component {
   }
 
   onPaginationLimitSelected(e) {
-    this.setState({
-      page: 1,
-      limit: e.target.value,
-    });
+    this.setState(
+      {
+        page: 1,
+        limit: e.target.value,
+      },
+      () => {
+        let pageMax =
+          this.moviesInCategory(this.state.movies).length / this.state.limit;
+        this.setState({ isLast: 1 > pageMax });
+      }
+    );
   }
 
   generateMoviesComponent() {
-    const movies = this.movieFilterByCategory(this.state.movies);
+    const movies = this.moviesInCategory(this.state.movies);
     const page = this.state.page;
     const limit = this.state.limit;
 
