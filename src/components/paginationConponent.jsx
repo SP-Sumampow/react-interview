@@ -2,7 +2,7 @@ import React from "react";
 
 export const PaginationComponent = ({
   onNextClicked,
-  onPaginationAmountSelected,
+  onPaginationLimitSelected,
   onPreviousClicked,
 }) => {
   return (
@@ -11,7 +11,7 @@ export const PaginationComponent = ({
         Previous
       </button>
 
-      <select name="pagination-limit" onChange={onPaginationAmountSelected}>
+      <select name="pagination-limit" onChange={onPaginationLimitSelected}>
         <option key={3} value={3} >
           3
         </option>

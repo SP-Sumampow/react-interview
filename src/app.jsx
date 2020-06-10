@@ -10,26 +10,49 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
+      categoryFilter: null,
       limit: 3,
       page: 1,
     };
   }
 
+  // statefull cycle 
+  componentDidMount() {
+    movies$.then((movies) => {
+      this.setState({ movies: movies });
+    });
+  }
+
+  // model transform
   movieCategories() {
     let categories = this.state.movies.map((movie) => movie.category);
     categories = categories.filter((x, i, a) => a.indexOf(x) == i);
     return categories;
   }
 
+  movieFilterByCategory() {
+    let categoryFilter = this.state.categoryFilter;
+    let movies = this.state.movies;
+
+    if (categoryFilter == null) {
+      return movies;
+    }
+
+    return movies.filter((movie) => {
+      console.log(
+        `${movie.category == categoryFilter} = ${
+          movie.category
+        } ? ${categoryFilter}`
+      );
+      return movie.category == categoryFilter;
+    });
+  }
+
   paginate(array, page_size, page_number) {
     return array.slice((page_number - 1) * page_size, page_number * page_size);
   }
 
-  componentDidMount() {
-    movies$.then((movies) => {
-      this.setState({ movies: movies });
-    });
-  }
+  // Movie component action
 
   onDeleteClicked(movieId) {
     let movies = this.state.movies;
@@ -60,40 +83,47 @@ class App extends Component {
     this.setState({ movies: movies });
   }
 
-  // pagination
+  // Category filter component action
+
+  onCategorySelected(e) {
+    this.setState({
+      categoryFilter: e.target.value,
+    });
+  }
+
+  // Pagination action
 
   onNextClicked(e) {
-    let pageMax = this.state.movies.length / this.state.limit
-    let page = this.state.page
+    let pageMax = this.state.movies.length / this.state.limit;
+    let page = this.state.page;
     if (page + 1 > pageMax) {
-      return 
+      return;
     }
-    page = page + 1
+    page = page + 1;
     this.setState({ page: page });
-
   }
 
   onPreviousClicked(e) {
     let page = this.state.page;
     if (page == 1) {
-      return
+      return;
     }
-    page = page - 1
+    page = page - 1;
     this.setState({ page: page });
   }
 
-  onPaginationAmountSelected(e) {
-    this.setState({ 
+  onPaginationLimitSelected(e) {
+    this.setState({
       page: 1,
-      limit: e.target.value 
+      limit: e.target.value,
     });
   }
 
   generateMoviesComponent() {
-    const movies = this.state.movies;
+    const movies = this.movieFilterByCategory(this.state.movies);
     const page = this.state.page;
     const limit = this.state.limit;
-  
+
     return this.paginate(movies, limit, page).map((movie) => {
       return (
         <MovieComponent
@@ -111,22 +141,16 @@ class App extends Component {
     return (
       <div>
         <section>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-          <label for="pet-select">Choose a category:</label>
-=======
-          <label for="pet-select">Choose a pet:</label>
->>>>>>> 1bea7a4cd7f551e92b0b62cfc9b1ef989126f099
-          <SelectMovieComponent  movieCategories={this.state.movieCategories()} />
-=======
           <label for="pet-select">Choose a movie category:</label>
-          <SelectMovieComponent movieCategories={this.movieCategories()} />
->>>>>>> Stashed changes
+          <SelectMovieComponent
+            movieCategories={this.movieCategories()}
+            onCategorySelected={this.onCategorySelected.bind(this)}
+          />
         </section>
         <section>{this.generateMoviesComponent()}</section>
         <PaginationComponent
           onPreviousClicked={this.onPreviousClicked.bind(this)}
-          onPaginationAmountSelected={this.onPaginationAmountSelected.bind(this)}
+          onPaginationLimitSelected={this.onPaginationLimitSelected.bind(this)}
           onNextClicked={this.onNextClicked.bind(this)}
         />
       </div>
