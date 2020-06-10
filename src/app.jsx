@@ -10,9 +10,10 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      categoryFilter: null,
+      categoryFilter: "all",
       limit: 3,
       page: 1,
+      isLast: false
     };
   }
 
@@ -34,7 +35,7 @@ class App extends Component {
     let categoryFilter = this.state.categoryFilter;
     let movies = this.state.movies;
 
-    if (categoryFilter == null) {
+    if (categoryFilter == "all") {
       return movies;
     }
 
@@ -152,6 +153,7 @@ class App extends Component {
           onPreviousClicked={this.onPreviousClicked.bind(this)}
           onPaginationLimitSelected={this.onPaginationLimitSelected.bind(this)}
           onNextClicked={this.onNextClicked.bind(this)}
+          isLast={this.state.isLast}
         />
       </div>
     );
