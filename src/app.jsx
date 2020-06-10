@@ -70,7 +70,11 @@ class App extends Component {
     return (
       <div>
         <section>
+<<<<<<< HEAD
           <label for="pet-select">Choose a category:</label>
+=======
+          <label for="pet-select">Choose a pet:</label>
+>>>>>>> 1bea7a4cd7f551e92b0b62cfc9b1ef989126f099
           <SelectMovieComponent  movieCategories={this.state.movieCategories()} />
         </section>
         <section>{this.generateMoviesComponent()}</section>
