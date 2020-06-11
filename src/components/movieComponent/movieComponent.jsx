@@ -7,10 +7,10 @@ export const MovieComponent = ({
   onDislikeClicked,
   onDeleteClicked,
 }) => (
-  <div>
+  <div className="movie_container">
     <h1 className="movie_title">{movie.title}</h1>
     <span>{movie.category}</span>
-    <img src={movie.picture} width="100px" height="auto" />
+    <img src={movie.picture} width="200px" height="auto" />
     <button
       type="button"
       onClick={() => {

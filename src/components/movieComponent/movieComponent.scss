@@ -1,0 +1,17 @@
+@import "../../global.scss";
+
+.movie_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid $tertierColor;
+    min-height: 450px;
+    min-width: 300px;
+}
+
+.movie_title {
+  color: #361d32;
+  font-size: 32px;
+  font-weight: bold;
+}

@@ -153,15 +153,15 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <section>
-          <label for="pet-select">Choose a movie category:</label>
+          <label for="movie-select">Choose a movie category:</label>
           <SelectMovieComponent
             movieCategories={this.movieCategories()}
             onCategorySelected={this.onCategorySelected.bind(this)}
           />
         </section>
-        <section>{this.generateMoviesComponent()}</section>
+        <section className="allMovies">{this.generateMoviesComponent()}</section>
         <PaginationComponent
           onPreviousClicked={this.onPreviousClicked.bind(this)}
           onPaginationLimitSelected={this.onPaginationLimitSelected.bind(this)}

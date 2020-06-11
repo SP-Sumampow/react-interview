@@ -1,4 +1,25 @@
-.movie_title {
-    color: yellowgreen;
+@import 'reset';
+@import 'global';
+
+
+body {
+  background-color: $backgroundColor;
+  
+
+
+  .container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
   }
   
+  .allMovies{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+ 
+}
