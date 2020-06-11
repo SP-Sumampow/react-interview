@@ -1,9 +1,45 @@
+/************* COLORS ************/
+
 $backgroundColor: #f1e8e6;
 $primaryColor: #edd2cb;
 $secondaryColor: #f55951;
 $tertierColor: #543c52;
 $quarterColor: #361d32;
 
+
+/************* BREAKPOINTS ************/
+
+$tablet-up: 768px;
+$tablet-down: 767px;
+
+$desktop-up: 1200px;
+$desktop-down: 1199px;
+
+@mixin tablet-up {
+  @media (min-width: $tablet-up) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media (max-width: $tablet-down) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media (min-width: $desktop-up) {
+    @content;
+  }
+}
+
+@mixin desktop-down {
+  @media (max-width: $desktop-down) {
+    @content;
+  }
+}
+
+/************* GENERALS ************/
 
 .buttonControls {
     background-color: $backgroundColor;
