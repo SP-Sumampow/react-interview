@@ -1,4 +1,19 @@
 $backgroundColor: #f1e8e6;
 $primaryColor: #edd2cb;
+$secondaryColor: #f55951;
 $tertierColor: #543c52;
 $quarterColor: #361d32;
+
+
+.buttonControls {
+    background-color: $backgroundColor;
+    border: none;
+    color: $quarterColor;
+    height: 20px;
+    width: 80px;
+    margin-right: 4px;
+
+    :hover {
+        background-color: $secondaryColor;
+    }
+}
