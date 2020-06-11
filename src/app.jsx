@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       movies: [],
       categoryFilter: "all",
-      limit: 3,
+      limit: 4,
       page: 1,
       isLast: false,
     };
@@ -154,8 +154,8 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <section>
-          <label for="movie-select">Choose a movie category:</label>
+        <section className="chooseCathegory">
+          <label className="chooseCathegory_title" for="movie-select">Choose a movie category:</label>
           <SelectMovieComponent
             movieCategories={this.movieCategories()}
             onCategorySelected={this.onCategorySelected.bind(this)}
