@@ -20,7 +20,7 @@ export const SelectMovieComponent = ({
   );
 
   optionCategories.unshift(
-    <option key="unknown" value="all">
+    <option className="cathegoryOptions" key="unknown" value="all" >
       --Please choose a movie category--
     </option>
   );
