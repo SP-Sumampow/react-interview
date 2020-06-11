@@ -1,4 +1,7 @@
 @import "../../global.scss";
+@import "../../reset.scss";
+
+
 
 .movie_container {
     display: flex;
@@ -6,12 +9,22 @@
     justify-content: space-around;
     align-items: center;
     border: 1px solid $tertierColor;
+    border-radius: 4px;
     min-height: 450px;
     min-width: 300px;
+    background-color: $primaryColor;
+    margin: 20px;
 }
 
 .movie_title {
   color: #361d32;
   font-size: 32px;
   font-weight: bold;
+}
+
+.movieControls {
+    width: 80%;
+display: flex;
+justify-content: space-around;
+flex-direction: row;
 }

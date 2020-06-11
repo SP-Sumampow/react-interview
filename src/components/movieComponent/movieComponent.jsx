@@ -11,7 +11,8 @@ export const MovieComponent = ({
     <h1 className="movie_title">{movie.title}</h1>
     <span>{movie.category}</span>
     <img src={movie.picture} width="200px" height="auto" />
-    <button
+    <div className="movieControls">
+    <button className="buttonControls"
       type="button"
       onClick={() => {
         onDeleteClicked(movie.id);
@@ -19,7 +20,7 @@ export const MovieComponent = ({
     >
       delete
     </button>
-    <button
+    <button className="buttonControls"
       type="button"
       onClick={() => {
         onLikeClicked(movie.id);
@@ -27,7 +28,7 @@ export const MovieComponent = ({
     >
       Like: {movie.likes}
     </button>
-    <button
+    <button className="buttonControls"
       type="button"
       onClick={() => {
         onDislikeClicked(movie.id);
@@ -35,5 +36,6 @@ export const MovieComponent = ({
     >
       Dislike: {movie.dislikes}
     </button>
+    </div>
   </div>
 );
