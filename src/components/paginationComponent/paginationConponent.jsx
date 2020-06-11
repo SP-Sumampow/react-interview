@@ -1,3 +1,4 @@
+import './paginationConponent.scss';
 import React from "react";
 
 export const PaginationComponent = ({

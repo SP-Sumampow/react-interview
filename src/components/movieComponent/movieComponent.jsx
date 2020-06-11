@@ -1,3 +1,4 @@
+import './movieComponent.scss';
 import React from "react";
 
 export const MovieComponent = ({

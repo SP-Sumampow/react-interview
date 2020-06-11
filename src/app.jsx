@@ -1,7 +1,8 @@
+import './app.scss';
 import React, { Component } from "react";
-import { MovieComponent } from "./components/movieComponent";
-import { SelectMovieComponent } from "./components/selectMovieComponent";
-import { PaginationComponent } from "./components/paginationConponent";
+import { MovieComponent } from "./components/movieComponent/movieComponent";
+import { SelectMovieComponent } from "./components/selectMovieComponent/selectMovieComponent";
+import { PaginationComponent } from "./components/paginationComponent/paginationConponent";
 
 import { movies$ } from "./movies";
 
